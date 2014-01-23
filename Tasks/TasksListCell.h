@@ -1,6 +1,6 @@
 //
-//  AppDelegate.h
-//  Tasks
+//  TasksListCell.h
+//  TasksFlow2
 //
 //  Created by Nathan Fennel on 1/19/14.
 //  Copyright (c) 2014 Nathan Fennel. All rights reserved.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
-
-@property (strong, nonatomic) UIWindow *window;
+@interface TasksListCell : UITableViewCell
 
 @end
