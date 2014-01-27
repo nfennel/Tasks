@@ -7,11 +7,22 @@
         <!--Tasks List Controller-->
         <scene sceneID="Xmc-zx-3UP">
             <objects>
-                <tableViewController id="7pb-YB-cUX" userLabel="Tasks List Controller" sceneMemberID="viewController">
+                <tableViewController id="7pb-YB-cUX" userLabel="Tasks List Controller" customClass="TasksListController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="nk5-85-Tfw">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <button key="tableFooterView" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="bottom" lineBreakMode="middleTruncation" id="ckQ-ZW-JOc">
+                            <rect key="frame" x="0.0" y="66" width="320" height="32"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" image="PlusFooterTask.png">
+                                <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <segue destination="6zS-49-n3Q" kind="push" customClass="UIStoryboardPopoverSegue" id="JyP-2H-ppp"/>
+                            </connections>
+                        </button>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TasksListCell" id="aI8-mh-w4h" userLabel="Tasks List Cell - TasksListCell">
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
@@ -28,12 +39,63 @@
                             <outlet property="delegate" destination="7pb-YB-cUX" id="Ivf-CZ-ztO"/>
                         </connections>
                     </tableView>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xlM-Zr-n2i" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="65" y="107"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="QPs-am-5ul">
+            <objects>
+                <viewController id="6zS-49-n3Q" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jS0-ql-XLP"/>
+                        <viewControllerLayoutGuide type="bottom" id="bXe-Yn-RU5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ew5-BV-lFE">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="bottom" fixedFrame="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" keyboardDismissMode="interactive" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="foP-Gc-Wyn">
+                                <rect key="frame" x="0.0" y="118" width="320" height="406"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Task Title">
+                                        <attributes>
+                                            <font key="NSFont" metaFont="toolTip"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
+                            </textView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qzu-D3-Z20">
+                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem image="CancelFooter.png" id="vNm-nP-5zC"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="MCF-6u-p8G"/>
+                                    <barButtonItem image="CheckRed.png" width="38" id="s1C-hm-1kV"/>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="ncv-3w-hGu"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZBD-VQ-TKo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="548" y="107"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="CancelFooter.png" width="32" height="32"/>
+        <image name="CheckRed.png" width="32" height="32"/>
+        <image name="PlusFooterTask.png" width="32" height="32"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

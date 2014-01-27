@@ -109,6 +109,10 @@
 		8043355A18919F4E00A927E5 /* UnitiWhite@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 804334F418919F4E00A927E5 /* UnitiWhite@2x.png */; };
 		8043355B18919F4E00A927E5 /* ViewedOff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 804334F518919F4E00A927E5 /* ViewedOff@2x.png */; };
 		8043355C18919F4E00A927E5 /* ViewedOn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 804334F618919F4E00A927E5 /* ViewedOn@2x.png */; };
+		8043355E189234F700A927E5 /* redTri.png in Resources */ = {isa = PBXBuildFile; fileRef = 8043355D189234F700A927E5 /* redTri.png */; };
+		80433560189240DD00A927E5 /* blueTri.png in Resources */ = {isa = PBXBuildFile; fileRef = 8043355F189240DD00A927E5 /* blueTri.png */; };
+		804335631892C1AC00A927E5 /* greenTri.png in Resources */ = {isa = PBXBuildFile; fileRef = 804335611892C1AC00A927E5 /* greenTri.png */; };
+		804335641892C1AC00A927E5 /* orangeTri.png in Resources */ = {isa = PBXBuildFile; fileRef = 804335621892C1AC00A927E5 /* orangeTri.png */; };
 		8066577B1891600500AD05C8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8066577A1891600500AD05C8 /* Foundation.framework */; };
 		8066577D1891600500AD05C8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8066577C1891600500AD05C8 /* CoreGraphics.framework */; };
 		8066577F1891600500AD05C8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8066577E1891600500AD05C8 /* UIKit.framework */; };
@@ -123,6 +127,7 @@
 		8066579C1891600600AD05C8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8066577E1891600500AD05C8 /* UIKit.framework */; };
 		806657A41891600600AD05C8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 806657A21891600600AD05C8 /* InfoPlist.strings */; };
 		806657A61891600600AD05C8 /* TasksTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 806657A51891600600AD05C8 /* TasksTests.m */; };
+		80BCAA9F189695E70008BAF4 /* Tasks.m in Sources */ = {isa = PBXBuildFile; fileRef = 80BCAA9E189695E70008BAF4 /* Tasks.m */; };
 		80EE400C189167320087206F /* TasksListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 80EE400B189167320087206F /* TasksListCell.m */; };
 /* End PBXBuildFile section */
 
@@ -239,6 +244,10 @@
 		804334F418919F4E00A927E5 /* UnitiWhite@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UnitiWhite@2x.png"; sourceTree = "<group>"; };
 		804334F518919F4E00A927E5 /* ViewedOff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ViewedOff@2x.png"; sourceTree = "<group>"; };
 		804334F618919F4E00A927E5 /* ViewedOn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ViewedOn@2x.png"; sourceTree = "<group>"; };
+		8043355D189234F700A927E5 /* redTri.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redTri.png; sourceTree = "<group>"; };
+		8043355F189240DD00A927E5 /* blueTri.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueTri.png; sourceTree = "<group>"; };
+		804335611892C1AC00A927E5 /* greenTri.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greenTri.png; sourceTree = "<group>"; };
+		804335621892C1AC00A927E5 /* orangeTri.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = orangeTri.png; sourceTree = "<group>"; };
 		806657771891600500AD05C8 /* Tasks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tasks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8066577A1891600500AD05C8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8066577C1891600500AD05C8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -258,6 +267,8 @@
 		806657A11891600600AD05C8 /* TasksTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TasksTests-Info.plist"; sourceTree = "<group>"; };
 		806657A31891600600AD05C8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		806657A51891600600AD05C8 /* TasksTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TasksTests.m; sourceTree = "<group>"; };
+		80BCAA9D189695E70008BAF4 /* Tasks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tasks.h; sourceTree = "<group>"; };
+		80BCAA9E189695E70008BAF4 /* Tasks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tasks.m; sourceTree = "<group>"; };
 		80EE400A189167320087206F /* TasksListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TasksListCell.h; sourceTree = "<group>"; };
 		80EE400B189167320087206F /* TasksListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TasksListCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -348,6 +359,8 @@
 				806657831891600500AD05C8 /* InfoPlist.strings */,
 				806657861891600500AD05C8 /* main.m */,
 				806657881891600500AD05C8 /* Tasks-Prefix.pch */,
+				80BCAA9D189695E70008BAF4 /* Tasks.h */,
+				80BCAA9E189695E70008BAF4 /* Tasks.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -373,6 +386,8 @@
 		806657AF1891636800AD05C8 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				804335611892C1AC00A927E5 /* greenTri.png */,
+				804335621892C1AC00A927E5 /* orangeTri.png */,
 				8043349118919F4E00A927E5 /* AcceptOutline@2x.png */,
 				8043349218919F4E00A927E5 /* Account1@2x.png */,
 				8043349318919F4E00A927E5 /* Account2@2x.png */,
@@ -407,6 +422,7 @@
 				804334B018919F4E00A927E5 /* AtoZOn@2x.png */,
 				804334B118919F4E00A927E5 /* Attachment@2x.png */,
 				804334B218919F4E00A927E5 /* BackBlue@2x.png */,
+				8043355F189240DD00A927E5 /* blueTri.png */,
 				804334B318919F4E00A927E5 /* CalendarGrey@2x.png */,
 				804334B418919F4E00A927E5 /* CalendarRed@2x.png */,
 				804334B518919F4E00A927E5 /* CalGoingButton@2x.png */,
@@ -459,6 +475,7 @@
 				804334E418919F4E00A927E5 /* PlusHomeTasks@2x.png */,
 				804334E518919F4E00A927E5 /* ProLeftDrawer@2x.png */,
 				804334E618919F4E00A927E5 /* RecentlyArchived@2x.png */,
+				8043355D189234F700A927E5 /* redTri.png */,
 				804334E718919F4E00A927E5 /* RemoveAccount@2x.png */,
 				804334E818919F4E00A927E5 /* RemoveFromThread@2x.png */,
 				804334E918919F4E00A927E5 /* Reply@2x.png */,
@@ -599,6 +616,8 @@
 				8043351E18919F4E00A927E5 /* CalNotGoingButton@2x.png in Resources */,
 				8043354618919F4E00A927E5 /* PlusFooterTask@2x.png in Resources */,
 				8043352B18919F4E00A927E5 /* DeclineOutline@2x.png in Resources */,
+				804335641892C1AC00A927E5 /* orangeTri.png in Resources */,
+				80433560189240DD00A927E5 /* blueTri.png in Resources */,
 				8043353E18919F4E00A927E5 /* MenuSignature@2x.png in Resources */,
 				8043355118919F4E00A927E5 /* Sent@2x.png in Resources */,
 				8043351718919F4E00A927E5 /* Attachment@2x.png in Resources */,
@@ -608,6 +627,7 @@
 				8043354D18919F4E00A927E5 /* RemoveAccount@2x.png in Resources */,
 				8043355618919F4E00A927E5 /* TaskSwipe@2x.png in Resources */,
 				8043355418919F4E00A927E5 /* Spam@2x.png in Resources */,
+				804335631892C1AC00A927E5 /* greenTri.png in Resources */,
 				8043354F18919F4E00A927E5 /* Reply@2x.png in Resources */,
 				8043352F18919F4E00A927E5 /* Hamburger@2x.png in Resources */,
 				8043350D18919F4E00A927E5 /* AccountMenuDefaultDown@2x.png in Resources */,
@@ -655,6 +675,7 @@
 				8043353F18919F4E00A927E5 /* MoreBlue@2x.png in Resources */,
 				8043350B18919F4E00A927E5 /* AccountMenu10@2x.png in Resources */,
 				8043350118919F4E00A927E5 /* Account10@2x.png in Resources */,
+				8043355E189234F700A927E5 /* redTri.png in Resources */,
 				8043354A18919F4E00A927E5 /* PlusHomeTasks@2x.png in Resources */,
 				8043352118919F4E00A927E5 /* CheckGrey@2x.png in Resources */,
 				8043353218919F4E00A927E5 /* LabelHome@2x.png in Resources */,
@@ -684,6 +705,7 @@
 				806657911891600500AD05C8 /* TasksListController.m in Sources */,
 				8066578B1891600500AD05C8 /* AppDelegate.m in Sources */,
 				80EE400C189167320087206F /* TasksListCell.m in Sources */,
+				80BCAA9F189695E70008BAF4 /* Tasks.m in Sources */,
 				806657871891600500AD05C8 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

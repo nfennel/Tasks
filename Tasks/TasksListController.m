@@ -1,5 +1,5 @@
 //
-//  ViewController.m
+//  TasksListController.m
 //  Tasks
 //
 //  Created by Nathan Fennel on 1/19/14.
@@ -35,13 +35,61 @@
     
     _currentlySelectedListCell = -1;
     
-    // _tasks Content list key TITLE:String, AVATAR:String, DESCRIPTION:String, READ:Boolean, TIME:String, ACCOUNT FLAG:String, New Email:int, Total Email:int
+    // _tasks Content list key TITLE:String, AVATAR:String, ACCOUNT:String, COMPLETE:Boolean, TIME:String, ACCOUNT FLAG:String, MAIL:Boolean, CALENDAR:Boolean, TASKS:Boolean, NOTES:Boolean,
     
-    _tasksContentList =@[@[@"How's it going",@"bgoss@incubate.co",@"Just wanted to see what you are up to and how things have been. is everything ok in your corner of the world. hit me up with what's going on this weekend",@false,@"8:10p",@"Brian Goss",@"redTri.png",@"4",@"7",],
-                         @[@"Who went to the party last night",@"jgoss@incubate.co",@"If you went to the party did you see my keys?",@true,@"7:12p",@"Jeff Goss",@"redTri.png",@"0",@"4",],
-                         @[@"Are you going to the meeting?",@"nfennel@incubate.co",@"Are you going to be here in time for the meeting? what time do you think you will get here if you are?",@false,@"5:14a",@"Nathan",@"blueTri.png",@"3",@"20"],
-                         @[@"What Time is the Party?",@"nproulx@incubate.co",@"What time should I arrive?",@false,@"3:14a",@"Noel Proulx",@"blueTri.png",@"1",@"5"],
-                         @[@"Hey Check this out",@"tchmieleski@incubate.co",@"I thought that this article was really useful. take a look and let me know what you think and if we should use this method",@true,@"Tue",@"Troy Chmieleski",@"blueTri.png",@"0",@"1"]];
+    _tasksContentList = @[
+                            @[@"This is the text that fills out the space for what a subject of a task is, it could be rather long but should only fill a maximum of 3 lines. Hopefully this does the trick",
+                              @"bgoss@incubate.co",
+                              @"Account Type",
+                              @false,
+                              @"Time to be done by",
+                              @"Brian Goss",
+                              @"greenTri.png",
+                              @false,
+                              @true,
+                              @false,
+                              @false,
+                              @true,
+                              @false],
+                            @[@"Quis aute iure reprehenderit in voluptate velit esse. Gallia est omnis divisa in partes tres, quarum. Morbi odio eros, volutpat ut pharetra vitae, lobortis sed nibh. Praeterea iter est quasdam res quas ex communi.",
+                              @"bgoss@incubate.co",
+                              @"Legos",
+                              @false,
+                              @"Never",
+                              @"Bruce Springsteen",
+                              @"orangeTri.png",
+                              @true,
+                              @false,
+                              @true,
+                              @false,
+                              @true,
+                              @false],
+                            @[@"Confirm meeting with George to make sure the agenda is secure",
+                              @"bgoss@incubate.co",
+                              @"Work",
+                              @false,
+                              @"8:10p",
+                              @"Brian Goss",
+                              @"redTri.png",
+                              @false,
+                              @true,
+                              @true,
+                              @true,
+                              @true],
+                            @[@"Look up the new music app",
+                              @"bgoss@incubate.co",
+                              @"Home",
+                              @false,
+                              @"12a",
+                              @"Brian Goss",
+                              @"blueTri.png",
+                              @true,
+                              @true,
+                              @true,
+                              @true,
+                              @false,
+                              @true]
+                         ];
 
 }
 
@@ -69,7 +117,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
 {
-    return 98;
+    return 60;
 }
 
 -(void) handleLongPress: (UIGestureRecognizer *)longPress
@@ -94,8 +142,8 @@
         }
         else
         {
-            static NSString *CellIdentifier = @"TasksListCell";
-            TasksListCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+            //static NSString *CellIdentifier = @"TasksListCell";
+            //TasksListCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
             UIView *longPressView = (UIView*)[self.view viewWithTag:(indexPath.row*100)+TASKS_LONGPRESS_VIEW_TAG];
             [longPressView setAlpha:1.0];
             
@@ -106,8 +154,7 @@
 }
 
 - (void)updateLongpressView:(NSIndexPath *)tagField {
-    UIView *longPressView = (UIView*)[self.view viewWithTag:(tagField.row*100)+TASKS_LONGPRESS_VIEW_TAG];
-    [longPressView setAlpha:0.0];
+    // re-arrange cellse
 }
 
 - (NSIndexPath*) getCurrentlySelectedListCellPath
@@ -133,77 +180,58 @@
 }
 
 
+
+// Details of cell
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"TASKSListCell";
+    static NSString *CellIdentifier = @"TasksListCell";
     TasksListCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     NSInteger row = [indexPath row];
-    UILabel *tasksSubjectLine, *tasksTimeLine, *tasksPreview, *tasksReadUnread;
-    UIImageView  *tasksAccountFlag, *dotImgView;
+    UILabel *tasksSubjectLine, *tasksTimeLine, *tasksPreview, *tasksCompleteIncomplete;
+    UIImageView  *tasksAccountFlag, *alarm, *emailLink, *calendarLink, *tasksLink, *notesLink;
     
     
     // Configure the cell...
     
     
-    int xpos = 49; //default x for title and names
-    int xpos2 = 0; // for the blue dot
-    int screenWidth = [UIScreen mainScreen].bounds.size.width; // screen width
+    NSInteger xpos = 10; //default x for title and names
+    NSInteger screenWidth = [UIScreen mainScreen].bounds.size.width; // screen width
     
-    NSString *defaultURL = @"default";
-    /*
-    NSURL *gravatarDefaultURL = [GravatarHelper getGravatarURL:defaultURL];
-    
-    NSData *imageDefaultData = [NSData dataWithContentsOfURL:gravatarDefaultURL];
-    */
-    
-    //compile the unread/total taskss and names
-    NSString *readUnreadPlaceholder =[NSString stringWithFormat:@"%@/%@ %@", _tasksContentList[row][TASKS_VIEW_NEW_TASKS],_tasksContentList[row][TASKS_VIEW_TOTAL_TASKS], _tasksContentList[row][TASKS_VIEW_NAMES]];
-    NSMutableAttributedString *tasksReadString = [[NSMutableAttributedString alloc]initWithString:readUnreadPlaceholder];
-    
-    if([_tasksContentList[row][TASKS_VIEW_AVATAR] isEqual: @""])
-    {
-        xpos = 9;// if there is no avatar image drop the title and names to the left
-    }
-    
-    //check if any emails are unread - if so add dot and change unread number to blue
-    if([_tasksContentList[row][TASKS_VIEW_NEW_TASKS] isEqual: @"0"])
-    {
-        //no unread emails default to grey for the entire string
-        [tasksReadString addAttribute:NSForegroundColorAttributeName value:_mediumGrayAppColor range:NSMakeRange(0, readUnreadPlaceholder.length)];
-    }
-    else{
-        //add the dot
-        dotImgView = [[UIImageView alloc] initWithFrame:CGRectMake(xpos, 18, 10, 10)];
-        dotImgView.image = [UIImage imageNamed:@"NewMail@2x.png"];
-        [cell.contentView addSubview: dotImgView];
-        xpos2 = 12;
-        // to change the color of unread emails to blue
-        NSString *getLength = _tasksContentList[row][TASKS_VIEW_NEW_TASKS];
-        NSRange range = NSMakeRange (0, getLength.length);
-        [tasksReadString addAttribute:NSForegroundColorAttributeName value:_mediumGrayAppColor range:NSMakeRange(0, readUnreadPlaceholder.length)];
-        [tasksReadString addAttribute:NSForegroundColorAttributeName value:_blueAppColor range:range];
-    }
     
     // tasks subject ----------------------------------------------------------------------
-    tasksSubjectLine = [[UILabel alloc] initWithFrame:CGRectMake(xpos, 27, 243, 21)];
+    tasksSubjectLine = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 300, 40)];
     tasksSubjectLine.tag = TASKS_SUBJECT_TAG;
     tasksSubjectLine.font = [UIFont boldSystemFontOfSize:15.0f];
     tasksSubjectLine.textColor = [UIColor blackColor];
-    tasksSubjectLine.numberOfLines = 1;
     tasksSubjectLine.text = _tasksContentList[row][TASKS_VIEW_TITLE];
+    
+    // adjust preview size
+    NSAttributedString *attributedText =
+    [[NSAttributedString alloc]
+     initWithString:tasksSubjectLine.text attributes:@{NSFontAttributeName: tasksSubjectLine.font}];
+    CGRect rect = [attributedText boundingRectWithSize:(CGSize){300, CGFLOAT_MAX} options:NSStringDrawingUsesLineFragmentOrigin context:nil];
+    if (rect.size.height <= 60 && rect.size.height >= 20)
+    {
+        tasksSubjectLine.numberOfLines = (rect.size.height / 20 ) + 2;
+    }
+    else if (rect.size.height > 60)
+    {
+        tasksSubjectLine.numberOfLines = 3;
+        //tasksSubjectLine.
+    }
+    else if (rect.size.height < 20)
+    {
+        tasksSubjectLine.numberOfLines = 1;
+    }
     [cell.contentView addSubview:tasksSubjectLine];
+    
+    NSInteger row2YPos = (tasksSubjectLine.numberOfLines > 1)  ? 40 : 30 ;
     //end tasks subject ----------------------------------------------------------------------
     
-    
-    //tasks time and if flagged as email read ------------------------------------------------
-    tasksTimeLine = [[UILabel alloc] initWithFrame:CGRectMake(screenWidth-66, 12, 60, 21)];
-    tasksTimeLine.tag = TASKS_TIME_TAG;
-    tasksTimeLine.font = [UIFont systemFontOfSize:14.0f];
-    tasksTimeLine.numberOfLines = 1;
-    tasksTimeLine.text = _tasksContentList[row][TASKS_VIEW_TIME];
-    tasksTimeLine.textAlignment = NSTextAlignmentRight;
-    // change background color and time color if the tasks has been read
-    if ([_tasksContentList[row][TASKS_VIEW_READ] isEqual: @true])
+     
+    //Only allow this when viewing all tasks
+    // change background color and time color if the tasks has been completed
+    if ([_tasksContentList[row][TASKS_VIEW_COMPLETE] isEqual: @true])
     {
         
         cell.contentView.backgroundColor = [UIColor colorWithRed:239/255.0f green:239/255.0f blue:234/255.0f alpha:1.0f];
@@ -216,11 +244,11 @@
     }
     
     [cell.contentView addSubview:tasksTimeLine];
-    //end tasks time -------------------------------------------------------------------------
+    //end tasks time --------------------------------------------------------------------------------
     
     
-    //tasks preview --------------------------------------------------------------------------
-    tasksPreview = [[UILabel alloc] initWithFrame:CGRectMake(9, 49, screenWidth-15, 35)];
+    //tasks preview ---------------------------------------------------------------------------------
+    tasksPreview = [[UILabel alloc] initWithFrame:CGRectMake(10, row2YPos, screenWidth-20, 20)];
     tasksPreview.tag = TASKS_PREVIEW_TAG;
     tasksPreview.textColor = _mediumGrayAppColor;
     tasksPreview.font = [UIFont systemFontOfSize:14.0f];
@@ -228,58 +256,80 @@
     tasksPreview.text=_tasksContentList[row][TASKS_VIEW_PREVIEW];
     CGSize labelSize = [tasksPreview.text sizeWithFont:tasksPreview.font
                                      constrainedToSize:tasksPreview.frame.size
-                                         lineBreakMode:UILineBreakModeWordWrap];
+                                         lineBreakMode:NSLineBreakByWordWrapping];
     CGFloat labelHeight = labelSize.height;
-    if(labelHeight<18) //adjust y location if only one line of text in the preview
-    {
-        CGRect labelFrame = [tasksPreview frame];
-        labelFrame.origin.y = 40;
-        [tasksPreview setFrame:labelFrame];
-    }
+    CGRect labelFrame = [tasksPreview frame];
+    labelFrame.origin.y = row2YPos - 4;
+    [tasksPreview setFrame:labelFrame];
     [cell.contentView addSubview:tasksPreview];
-    // end tasks preview ---------------------------------------------------------------------
+    
+    attributedText =
+    [[NSAttributedString alloc]
+     initWithString:tasksPreview.text attributes:@{NSFontAttributeName: tasksPreview.font}];
+    rect = [attributedText boundingRectWithSize:(CGSize){300, CGFLOAT_MAX} options:NSStringDrawingUsesLineFragmentOrigin context:nil];
+    NSInteger alarmXPos = rect.size.width + 20;
+    // end tasks preview -----------------------------------------------------------------------------
     
     
-    //tasks read and unread ------------------------------------------------------------------
-    tasksReadUnread = [[UILabel alloc] initWithFrame:CGRectMake(xpos+xpos2, 12, 164, 21)];
-    tasksReadUnread.tag = TASKS_UNREAD_TAG;
-    tasksReadUnread.attributedText = tasksReadString;
-    tasksReadUnread.font = [UIFont systemFontOfSize:14.0f];
-    [cell.contentView addSubview:tasksReadUnread];
-    //end tasks read and unread --------------------------------------------------------------
     
     
-    /*email avatar ---------------------------------------------------------------------------
-    UIImageView *emailAvatar = [[UIImageView alloc] initWithFrame:CGRectMake(9, 9, 36, 36)];
-    NSString *newURL = _emailContentList[row][TASKS_VIEW_AVATAR];
-    NSURL *gravatarURL = [GravatarHelper getGravatarURL:newURL];
-    NSData *imageData = [NSData dataWithContentsOfURL:gravatarURL];
     
-    if(imageData !=nil)
+    // Links associated with Tasks -------------------------------------------------------------------
+    NSInteger linkYPosition = row2YPos;
+    NSInteger linkXPosition = 292;
+    NSInteger linkXDelta = 20;
+    
+    if ([_tasksContentList[row][8] isEqual: @true])
     {
-        emailAvatar.image = [UIImage imageWithData:imageData];
-        emailAvatar.layer.cornerRadius = AVATAR_CORNER_RADIUS;
-        emailAvatar.layer.masksToBounds = YES;
-        [cell.contentView addSubview: emailAvatar];
+        notesLink = [[UIImageView alloc] initWithFrame:CGRectMake(linkXPosition, linkYPosition, CELL_ICON_WIDTH, CELL_ICON_HEIGHT)];
+        notesLink.image = [UIImage imageNamed:@"PencilGrey@2x.png"];
+        [cell.contentView addSubview: notesLink];
+        linkXPosition -= linkXDelta;
     }
-    else
+
+    if ([_tasksContentList[row][9] isEqual: @true])
     {
-        
-        CGRect avatarFrame = [emailSubjectLine frame];
-        avatarFrame.origin.x=9;
-        [emailSubjectLine setFrame:avatarFrame];
-        avatarFrame = [emailReadUnread frame];
-        avatarFrame.origin.x=9+xpos2;
-        [emailReadUnread setFrame: avatarFrame];
-        if(xpos2>0)
-        {
-            avatarFrame = [dotImgView frame];
-            avatarFrame.origin.x = 9;
-            [dotImgView setFrame:avatarFrame];
-        }
+        emailLink = [[UIImageView alloc] initWithFrame:CGRectMake(linkXPosition, linkYPosition, CELL_ICON_WIDTH, CELL_ICON_HEIGHT)];
+        emailLink.image = [UIImage imageNamed:@"MailGrey@2x.png"];
+        [cell.contentView addSubview: emailLink];
+        linkXPosition -= linkXDelta;
     }
-    //end email avatar -----------------------------------------------------------------------
-    */
+    
+    if ([_tasksContentList[row][10] isEqual:@true])
+    {
+        calendarLink = [[UIImageView alloc] initWithFrame:CGRectMake(linkXPosition, linkYPosition, CELL_ICON_WIDTH, CELL_ICON_HEIGHT)];
+        calendarLink.image = [UIImage imageNamed:@"CalendarGrey@2x.png"];
+        [cell.contentView addSubview: calendarLink];
+        linkXPosition -= linkXDelta;
+    }
+    
+    if ([_tasksContentList[row][10] isEqual:@true])
+    {
+        tasksLink = [[UIImageView alloc] initWithFrame:CGRectMake(linkXPosition, linkYPosition, CELL_ICON_WIDTH, CELL_ICON_HEIGHT)];
+        tasksLink.image = [UIImage imageNamed:@"CheckGrey@2x.png"];
+        [cell.contentView addSubview: tasksLink];
+    }
+    
+    
+    // end Links associated with Task ----------------------------------------------------------------
+    
+    
+    // Alarm for task --------------------------------------------------------------------------------
+    
+    // Add check for if there is an alarm set
+    
+    alarm = [[UIImageView alloc] initWithFrame:CGRectMake(alarmXPos, row2YPos, 16, 16)];
+    alarm.image = [UIImage imageNamed:@"AlarmClock@2x"];
+    [cell.contentView addSubview:alarm];
+    // End Alarm for task ----------------------------------------------------------------------------
+    
+    //tasks complete and incomplete ------------------------------------------------------------------
+    tasksCompleteIncomplete = [[UILabel alloc] initWithFrame:CGRectMake(xpos, 12, 164, 21)];
+    tasksCompleteIncomplete.tag = TASKS_INCOMPLETE_TAG;
+    //tasksCompleteIncomplete.attributedText = tasksReadString;
+    tasksCompleteIncomplete.font = [UIFont systemFontOfSize:14.0f];
+    [cell.contentView addSubview:tasksCompleteIncomplete];
+    //end tasks complete and incomplete --------------------------------------------------------------
     
     //tasks account flag ---------------------------------------------------------------------
     tasksAccountFlag = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 8, 20)];
@@ -295,8 +345,8 @@
     longpressView.tag = 100*row+TASKS_LONGPRESS_VIEW_TAG;
     longpressView.alpha = 0.0f;
     
-    int boxes = screenWidth/4;
-    int padding = (boxes-36)/2;
+    NSInteger boxes = screenWidth/4;
+    NSInteger padding = (boxes-36)/2;
     
     UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(padding, 20, 36, 36)];
     imgView.image = [UIImage imageNamed:@"Trash@2x.png"];
@@ -357,23 +407,11 @@
     NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:p];
     
     // a new cell was tapped when a cell was already in long hold
-    if(theCurrentCell > -1 && theCurrentCell != indexPath.row)
+    if(theCurrentCell >= 0 && theCurrentCell != indexPath.row)
     {
         NSIndexPath *indexPath2 = [self getCurrentlySelectedListCellPath];
         [self updateLongpressView:indexPath2];
         
-    }
-    //is tapping inside a cell in longpress handle menu
-    else if(theCurrentCell == indexPath.row)
-    {
-        
-        int pointPressed = p.x, boxes=[UIScreen mainScreen].bounds.size.width/4,section=0;
-        if(pointPressed<=boxes){section=1;} //delete
-        else if(pointPressed >boxes && pointPressed<=(boxes*2)){section=2;}//spam
-        else if(pointPressed >boxes && pointPressed<=(boxes*3)){section=3;}//label
-        else {section=4;}//link
-        UIAlertView* mes=[[UIAlertView alloc] initWithTitle:@"LONG HOLD REVISITED" message:[NSString stringWithFormat:@"area %i was tapped in longpress mode", section] delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
-        [mes show];
     }
     //a cell was tapped when no cell was in longpress mode
     else
@@ -386,8 +424,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //static NSString *CellIdentifier = @"tasksTableCellController";
+    /*
     TasksListCell *cell = (TasksListCell *)[(UITableView *)self.view cellForRowAtIndexPath:indexPath];
     NSInteger theCurrentCell = [self getCurrentlySelectedListCell];
+    */
 }
 
 @end

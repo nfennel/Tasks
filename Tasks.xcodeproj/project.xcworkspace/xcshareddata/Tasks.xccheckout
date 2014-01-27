@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>BFEBB4D8-0D1D-4A1C-9F19-7ECC4A519836</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Tasks</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>7F13602B-BD47-4BE8-B837-F31E356AB40A</key>
+		<string>https://github.com/nfennel/Tasks.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Tasks.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>7F13602B-BD47-4BE8-B837-F31E356AB40A</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/nfennel/Tasks.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>7F13602B-BD47-4BE8-B837-F31E356AB40A</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>7F13602B-BD47-4BE8-B837-F31E356AB40A</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Tasks</string>
+		</dict>
+	</array>
+</dict>
+</plist>
